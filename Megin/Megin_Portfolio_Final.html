@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGIN Portfolio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #55a8e0;
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 80px,
+                rgba(230, 200, 150, 0.4) 80px,
+                rgba(230, 200, 150, 0.4) 82px,
+                transparent 82px,
+                transparent 90px,
+                rgba(230, 200, 150, 0.4) 90px,
+                rgba(230, 200, 150, 0.4) 92px
+            );
+            margin: 0;
+            padding: 40px;
+            color: #000;
+            min-height: 100vh;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+
+        .megin-title {
+            color: white;
+            font-size: 100px;
+            font-weight: 900;
+            line-height: 0.8;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .megin-subtitle {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        .top-windows {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* OS Window Styling */
+        .os-window {
+            border: 3px solid #000;
+            background: #dff4ff;
+            box-shadow: 0px 0px 0px 2px #000, 10px 10px 0px rgba(0,0,0,0.2);
+            flex: 1;
+        }
+
+        .os-title-bar {
+            background: #fff;
+            border-bottom: 3px solid #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .os-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        .os-btn {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #000;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .os-btn.close {
+            background: #f44336;
+            color: white;
+        }
+
+        /* ID.txt */
+        .id-content {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+            background: #dff4ff;
+        }
+
+        .id-avatar {
+            width: 150px;
+            height: 150px;
+            border: 3px solid #000;
+            background: #fff;
+            object-fit: cover;
+        }
+
+        .id-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .id-list li {
+            margin-bottom: 15px;
+        }
+
+        /* Contact.html */
+        .contact-content {
+            padding: 20px;
+            background: #dff4ff;
+        }
+
+        .contact-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .text-red { color: #d32f2f; }
+        .text-gray { color: #d32f2f; font-size: 12px; opacity: 0.8; font-weight: normal; cursor: pointer; }
+
+        /* Portfolio.exe */
+        .portfolio-window {
+            background: #bde8fa;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .tab-btn {
+            background: #31ccd7;
+            border: 2px solid #000;
+            border-radius: 20px;
+            padding: 8px 30px;
+            font-weight: 900;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #555;
+            transition: transform 0.1s;
+        }
+
+        .tab-btn:active, .tab-btn.active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #555;
+            background: #25aab4;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 0 20px 20px 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Tab specific styling */
+        .info-panel {
+            background: #1bd1df;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .info-panel-left, .info-panel-right {
+            flex: 1;
+        }
+
+        .stat-text {
+            font-weight: 900;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .section-header {
+            font-weight: 900;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .agent-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .agent-icon {
+            width: 90px;
+            height: 90px;
+            border: 2px solid transparent; 
+            object-fit: cover;
+        }
+
+        .strinova-agents {
+            display: flex;
+            gap: 5px;
+        }
+        .strinova-agents img {
+            height: 120px;
+            object-fit: contain;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .video-card {
+            background: #333;
+            border: 2px solid #000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-frame {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+            overflow: hidden;
+        }
+
+        /* Thumbnail Overlay styles */
+        .thumb-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: block;
+            text-decoration: none;
+        }
+        .thumb-overlay img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: opacity 0.2s;
+        }
+        .thumb-overlay:hover img {
+            opacity: 0.7;
+        }
+        .play-btn {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px; height: 60px;
+            background: rgba(255, 0, 0, 0.8);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .thumb-overlay:hover .play-btn {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .play-btn::after {
+            content: '';
+            width: 0; height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid white;
+            margin-left: 5px;
+        }
+
+        .video-links {
+            display: flex;
+            background: #222;
+            padding: 10px;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .video-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .video-links a:hover {
+            color: #1bd1df;
+        }
+
+        /* Add Video UI */
+        .add-video-ui {
+            background: #fff;
+            border: 2px dashed #000;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .add-video-ui input {
+            padding: 8px;
+            margin: 5px;
+            border: 2px solid #000;
+            width: 250px;
+        }
+        .add-video-ui button {
+            padding: 8px 15px;
+            background: #1bd1df;
+            border: 2px solid #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .add-video-ui button:hover { background: #31ccd7; }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1 class="megin-title">MEGIN</h1>
+        <div class="megin-subtitle">LET ME AURA FARMING FOR NO REASON =)</div>
+    </div>
+
+    <div class="top-windows">
+        <!-- ID.txt -->
+        <div class="os-window">
+            <div class="os-title-bar">
+                <span>ID.txt</span>
+                <div class="os-controls">
+                    <div class="os-btn">-</div>
+                    <div class="os-btn">☐</div>
+                    <div class="os-btn close">X</div>
+                </div>
+            </div>
+            <div class="id-content">
+                <img src="Megin.jpg" alt="Megin Avatar" class="id-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\'%3E%3Crect width=\'150\' height=\'150\' fill=\'%23ccc\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'%3EMegin.jpg%3C/text%3E%3C/svg%3E'">
+                <ul class="id-list">
+                    <li>+ Talent Self_Gatekeeping Expert<br>&nbsp;&nbsp;(Unemployment) for 5 year.</li>
+                    <li>+ Valorant, Strinova, Osu player</li>
+                    <li>+ Freelance Editor (Capcut,<br>&nbsp;&nbsp;Photoshop, Canva user)</li>
+                    <li>+ FPTU student</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contact.html -->
+        <div class="os-window">
+            <div class="os-title-bar">
+                <span>Contact.html</span>
+                <div class="os-controls">
+                    <div class="os-btn">-</div>
+                    <div class="os-btn">☐</div>
+                    <div class="os-btn close">X</div>
+                </div>
+            </div>
+          <div class="contact-content">
+    <div class="contact-title">MY CONTACT</div>
+    
+    <div class="contact-item">
+        <span>Discord: <a href="https://discord.com/users/985748439306469468" target="_blank" style="color: #000; text-decoration: none;"><b>Đậu Nguyên Tử</b></a></span>
+        <span class="text-gray" onclick="var t=document.createElement('input');document.body.appendChild(t);t.value='Đậu Nguyên Tử';t.select();document.execCommand('copy');document.body.removeChild(t);alert('Đã copy ID Discord!');">Click to copy ID</span>
+    </div>
+    
+    <div class="contact-item">
+        <span>Facebook: <a href="https://www.facebook.com/anh.baka.uc" target="_blank" style="color: #d32f2f; text-decoration: none;"><b>Anh Baka Đức</b></a></span>
+    </div>
+    
+    <div class="contact-item">
+        <span>Osu: <a href="https://osu.ppy.sh/users/33306224" target="_blank" style="color: #d32f2f; text-decoration: none;"><b>kovuitaocang</b></a></span>
+    </div>
+    
+    <div class="contact-item">
+        <span>Valorant: <b>Matikanetanhaser #MAMBO</b></span>
+        <span class="text-gray" onclick="var t=document.createElement('input');document.body.appendChild(t);t.value='Matikanetanhaser #MAMBO';t.select();document.execCommand('copy');document.body.removeChild(t);alert('Đã copy ID Valorant!');">Click to copy ID</span>
+    </div>
+    
+    <div class="contact-item">
+        <span>Strinova: <b>Quốc Trưởng Siesta</b></span>
+        <span class="text-gray" onclick="var t=document.createElement('input');document.body.appendChild(t);t.value='Quốc Trưởng Siesta';t.select();document.execCommand('copy');document.body.removeChild(t);alert('Đã copy ID Strinova!');">Click to copy ID</span>
+    </div>
+    
+    <div class="contact-item">
+        <span>Gmail: <a href="mailto:ncr000574@gmail.com" style="color: #000; text-decoration: none;"><b>ncr000574@gmail.com</b></a></span>
+        <span class="text-gray" onclick="var t=document.createElement('input');document.body.appendChild(t);t.value='ncr000574@gmail.com';t.select();document.execCommand('copy');document.body.removeChild(t);alert('Đã copy Gmail!');">Click to copy ID</span>
+    </div>
+	</div>
+		</div>
+    			</div>
+
+    <!-- Portfolio.exe -->
+    <div class="os-window portfolio-window">
+        <div class="os-title-bar">
+            <span>Portfolio.exe</span>
+            <div class="os-controls">
+                <div class="os-btn">-</div>
+                <div class="os-btn">☐</div>
+                <div class="os-btn close">X</div>
+            </div>
+        </div>
+        
+        <div class="tabs-container">
+            <button class="tab-btn" onclick="openTab('valorant', this)">Valorant</button>
+            <button class="tab-btn active" onclick="openTab('osu', this)">Osu</button>
+            <button class="tab-btn" onclick="openTab('strinova', this)">Strinova</button>
+            <button class="tab-btn" onclick="openTab('youtube', this)">Youtube</button>
+            <button class="tab-btn" onclick="openTab('media', this)">Media</button>
+        </div>
+
+        <!-- Valorant Tab -->
+        <div id="valorant" class="tab-content">
+            <div class="info-panel">
+                <div class="info-panel-left stat-text">
+                    ID: Matikanetanhaser #MAMBO<br>
+                    Peak rank: Silver 3<br>
+                    Current rank: Silver 2
+                </div>
+                <div class="info-panel-right">
+                    <div class="section-header">MAIN AGENT</div>
+                    <div class="agent-icons">
+                        <img src="iso.png" class="agent-icon" alt="Iso" onerror="this.style.backgroundColor='#fff'">
+                        <img src="jett.png" class="agent-icon" alt="Jett" onerror="this.style.backgroundColor='#fff'">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-header">BEST HIGHLIGHT</div>
+            <div class="video-grid" id="valorant-grid">
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=5ZpXlGkcha0" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/5ZpXlGkcha0/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=5ZpXlGkcha0" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=VHRrWxpG2Cw" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/VHRrWxpG2Cw/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=VHRrWxpG2Cw" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=dVLceG_J8Mk" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/dVLceG_J8Mk/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=dVLceG_J8Mk" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://youtu.be/gM5VUKAlA-s" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/gM5VUKAlA-s/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://youtu.be/gM5VUKAlA-s" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+            </div>
+
+            <div class="add-video-ui">
+                <h4>Thêm Video Mới</h4>
+                <input type="text" id="val-yt" placeholder="Nhập Link YouTube...">
+                <input type="text" id="val-fb" placeholder="Nhập Link FB (Tùy chọn)...">
+                <button onclick="addVideo('valorant', 'val-yt', 'val-fb')">Add Video</button>
+            </div>
+        </div>
+
+        <!-- Osu Tab -->
+        <div id="osu" class="tab-content active">
+            <div class="info-panel">
+                <div class="info-panel-left" style="display: flex; gap: 20px; align-items: center;">
+                    <img src="osuava.png" alt="Osu Avatar" style="width:100px; height:100px; border:2px solid #000; background:#fff;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23ccc\'/%3E%3C/svg%3E'">
+                    <div class="stat-text">
+                        Osu ID: Kovuitaocang<br>
+                        Peak rank: 385,966<br>
+                        Current rank: 388 214<br>
+                        PP: 2,502pp
+                    </div>
+                </div>
+                <div class="info-panel-right">
+                    <div class="section-header">SKILL SET</div>
+                    <img src="skillset.png" alt="Skill Set" style="height:600px; border:2px solid #000;" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <div class="section-header">BEST HIGHLIGHT</div>
+            <div class="video-grid" id="osu-grid">
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=WkcAe3MUiyk" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/WkcAe3MUiyk/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=WkcAe3MUiyk" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://youtu.be/CKgeJYSCG9k" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/CKgeJYSCG9k/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://youtu.be/CKgeJYSCG9k" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://youtu.be/bwgK0-mfa6Y" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/bwgK0-mfa6Y/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://youtu.be/bwgK0-mfa6Y" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+            </div>
+
+            <div class="add-video-ui">
+                <h4>Thêm Video Mới</h4>
+                <input type="text" id="osu-yt" placeholder="Nhập Link YouTube...">
+                <input type="text" id="osu-fb" placeholder="Nhập Link FB (Tùy chọn)...">
+                <button onclick="addVideo('osu', 'osu-yt', 'osu-fb')">Add Video</button>
+            </div>
+        </div>
+
+        <!-- Strinova Tab -->
+        <div id="strinova" class="tab-content">
+            <div class="info-panel" style="align-items: center;">
+                <div class="info-panel-left stat-text">
+                    ID: QuocTruongSiesta #2165510<br>
+                    Peak rank: Neutron IV<br>
+                    Current rank: Neutron IV
+                </div>
+                <div class="info-panel-right" style="text-align: right;">
+                    <img src="neutron.png" alt="Neutron IV" style="height:600px; border:2px solid #000;" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="section-header">MAIN AGENT</div>
+            <div class="strinova-agents">
+                <img src="1.png" alt="Agents 1">
+                <img src="2.png" alt="Agents 2">
+                <img src="3.png" alt="Agents 3">
+            </div>
+        </div>
+
+        <!-- Youtube Tab -->
+        <div id="youtube" class="tab-content">
+            <div style="display: flex; gap: 20px;">
+                <!-- Channel 1 -->
+                <div style="flex:1;">
+                    <div class="section-header" style="color: #d32f2f;">NAMCR12</div>
+                    <div class="video-grid" style="grid-template-columns: 1fr;" id="yt1-grid">
+                        <div class="video-card">
+                            <div class="video-frame">
+                                <a href="https://www.youtube.com/watch?v=g093G83XcLc" target="_blank" class="thumb-overlay">
+                                    <img src="https://img.youtube.com/vi/g093G83XcLc/hqdefault.jpg" alt="Thumbnail">
+                                    <div class="play-btn"></div>
+                                </a>
+                            </div>
+                            <div class="video-links"><a href="https://www.youtube.com/watch?v=g093G83XcLc" target="_blank">Link YT</a></div>
+                        </div>
+                    </div>
+                    <div class="stat-text" style="font-size: 16px;">
+                        Current Active?: Non_Active<br>
+                        Sub: 275<br>
+                        Peak view if unban: 175k<br>
+                        Peak view: 15k
+                    </div>
+                </div>
+                <!-- Channel 2 -->
+                <div style="flex:1;">
+                    <div class="section-header" style="color: #d32f2f;">ĐẬU NGUYÊN TỬ</div>
+                    <div class="video-grid" style="grid-template-columns: 1fr;" id="yt2-grid">
+                        <div class="video-card">
+                            <div class="video-frame">
+                                <a href="https://www.youtube.com/shorts/mavFdTLdQF4" target="_blank" class="thumb-overlay">
+                                    <img src="https://img.youtube.com/vi/mavFdTLdQF4/hqdefault.jpg" alt="Thumbnail">
+                                    <div class="play-btn"></div>
+                                </a>
+                            </div>
+                            <div class="video-links"><a href="https://www.youtube.com/shorts/mavFdTLdQF4" target="_blank">Link YT</a></div>
+                        </div>
+                    </div>
+                    <div class="stat-text" style="font-size: 16px;">
+                        Current Active?: Active<br>
+                        Sub: 66<br>
+                        Peak view: 4.5k
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-video-ui">
+                <h4>Thêm Video Mới</h4>
+                <select id="yt-channel" style="padding: 8px; border: 2px solid #000; margin-right: 5px;">
+                    <option value="yt1">Kênh Namcr12</option>
+                    <option value="yt2">Kênh Đậu Nguyên Tử</option>
+                </select>
+                <input type="text" id="yt-yt" placeholder="Nhập Link YouTube...">
+                <input type="text" id="yt-fb" placeholder="Nhập Link FB (Tùy chọn)...">
+                <button onclick="addVideoChannel('yt-yt', 'yt-fb')">Add Video</button>
+            </div>
+        </div>
+
+        <!-- Media Tab -->
+        <div id="media" class="tab-content">
+            <div class="video-grid" id="media-grid">
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/shorts/mavFdTLdQF4" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/mavFdTLdQF4/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/shorts/mavFdTLdQF4" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=dVLceG_J8Mk" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/dVLceG_J8Mk/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=dVLceG_J8Mk" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=5OtSw7OC2ic" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/5OtSw7OC2ic/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=5OtSw7OC2ic" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=JkHMadrIgpY&t=6s" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/JkHMadrIgpY/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=JkHMadrIgpY&t=6s" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=yzsGcok9_xY" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/yzsGcok9_xY/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=yzsGcok9_xY" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=n9wGUT9tBOA" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/n9wGUT9tBOA/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=n9wGUT9tBOA" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=yXq2Ge8doBA" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/yXq2Ge8doBA/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=yXq2Ge8doBA" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+                <div class="video-card">
+                    <div class="video-frame">
+                        <a href="https://www.youtube.com/watch?v=yH4ALm1l9tI" target="_blank" class="thumb-overlay">
+                            <img src="https://img.youtube.com/vi/yH4ALm1l9tI/hqdefault.jpg" alt="Thumbnail">
+                            <div class="play-btn"></div>
+                        </a>
+                    </div>
+                    <div class="video-links"><a href="https://www.youtube.com/watch?v=yH4ALm1l9tI" target="_blank">Link YT</a><a href="#">Link FB</a></div>
+                </div>
+            </div>
+
+            <div class="add-video-ui">
+                <h4>Thêm Video Media Mới</h4>
+                <input type="text" id="media-yt" placeholder="Nhập Link YouTube...">
+                <input type="text" id="media-fb" placeholder="Nhập Link FB (Tùy chọn)...">
+                <button onclick="addVideo('media', 'media-yt', 'media-fb')">Add Video</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(tabId, btnElement) {
+            var contents = document.getElementsByClassName('tab-content');
+            for(var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+            var btns = document.getElementsByClassName('tab-btn');
+            for(var i = 0; i < btns.length; i++) {
+                btns[i].classList.remove('active');
+            }
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        // Logic for adding new videos dynamically
+        function extractYTId(url) {
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+            var match = url.match(regExp);
+            return (match && match[2].length == 11) ? match[2] : null;
+        }
+
+        function createVideoCardHTML(ytInput, fbInput, ytId) {
+            let fbHTML = fbInput ? `<a href="${fbInput}" target="_blank">Link FB</a>` : '';
+            return `
+                <div class="video-frame">
+                    <a href="${ytInput}" target="_blank" class="thumb-overlay">
+                        <img src="https://img.youtube.com/vi/${ytId}/hqdefault.jpg" alt="Thumbnail">
+                        <div class="play-btn"></div>
+                    </a>
+                </div>
+                <div class="video-links">
+                    <a href="${ytInput}" target="_blank">Link YT</a>
+                    ${fbHTML}
+                </div>
+            `;
+        }
+
+        function addVideo(tabName, ytInputId, fbInputId) {
+            var ytInput = document.getElementById(ytInputId).value;
+            var fbInput = document.getElementById(fbInputId).value;
+            
+            if (!ytInput) {
+                alert('Vui lòng nhập link YouTube!');
+                return;
+            }
+            
+            var ytId = extractYTId(ytInput);
+            if (!ytId) {
+                alert('Link YouTube không hợp lệ!');
+                return;
+            }
+
+            var gridId = tabName + '-grid';
+            var grid = document.getElementById(gridId);
+            
+            var videoCard = document.createElement('div');
+            videoCard.className = 'video-card';
+            videoCard.innerHTML = createVideoCardHTML(ytInput, fbInput, ytId);
+            
+            grid.appendChild(videoCard);
+            
+            // Xóa input sau khi thêm
+            document.getElementById(ytInputId).value = '';
+            document.getElementById(fbInputId).value = '';
+        }
+
+        function addVideoChannel(ytInputId, fbInputId) {
+            var channel = document.getElementById('yt-channel').value; // yt1 hoặc yt2
+            addVideo(channel, ytInputId, fbInputId);
+        }
+    </script>
+</body>
+</html>
